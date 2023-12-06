@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import FormComponent from "./components/FormComponent";
+import ListComponent from "./components/ListComponent";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-function App() {
+const App = () => {
+  const [username, setUsername] = useState("");
+  const [userData, setUserData] = useState(null);
+  const [userRepos, setUserRepos] = useState([]);
+
+  const handleSearch = async () => {
+    try {
+      const userResponse = await fetch(`https://api.github.com/users/${username}`);
+      if (!userResponse.ok) {
+        throw new Error("Network response error");
+      }
+      const userData = await userResponse.json();
+      setUserData(userData);
+
+      const reposResponse = await fetch(`https://api.github.com/users/${username}/repos`);
+      if (!reposResponse.ok) {
+        throw new Error("Network response error");
+      }
+      const userRepos = await reposResponse.json();
+      setUserRepos(userRepos);
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="container">
+        <FormComponent onSubmit={handleSearch} setUsername={setUsername} />
+
+        <ListComponent userData={userData} userRepos={userRepos} username={username} />
+      </div>
     </div>
   );
-}
+};
 
 export default App;
