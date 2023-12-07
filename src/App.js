@@ -33,7 +33,6 @@ const App = () => {
     <div className="App">
       <div className="container">
         <FormComponent onSubmit={handleSearch} setUsername={setUsername} />
-
         <ListComponent userData={userData} userRepos={userRepos} username={username} />
       </div>
     </div>

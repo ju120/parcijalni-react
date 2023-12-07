@@ -7,7 +7,7 @@ const FormComponent = ({ onSubmit, setUsername }) => {
     e.preventDefault();
     setUsername(inputValue);
     onSubmit();
-    // setInputValue("");
+    setInputValue("");
   };
 
   return (
