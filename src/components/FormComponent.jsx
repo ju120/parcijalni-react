@@ -7,16 +7,15 @@ const FormComponent = ({ onSubmit, setUsername }) => {
     e.preventDefault();
     setUsername(inputValue);
     onSubmit();
-    setInputValue("");
+    // setInputValue("");
   };
 
   return (
     <div>
-      <h2>Form Component</h2>
-      <form onSubmit={handleSubmit}>
-        <input type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)} placeholder="Enter username" />
-        <button type="submit">Search</button>
-      </form>
+      <h2>Github Users & Repositories</h2>
+
+      <input type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)} placeholder="Enter username" />
+      <button onClick={handleSubmit}>Search</button>
     </div>
   );
 };
