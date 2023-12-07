@@ -13,9 +13,10 @@ const FormComponent = ({ onSubmit, setUsername }) => {
   return (
     <div>
       <h2>Github Users & Repositories</h2>
-
-      <input type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)} placeholder="Enter username" />
-      <button onClick={handleSubmit}>Search</button>
+      <form onSubmit={handleSubmit}>
+        <input type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)} placeholder="Enter username" />
+        <button type="submit">Search</button>
+      </form>
     </div>
   );
 };

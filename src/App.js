@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FormComponent from "./components/FormComponent";
 import ListComponent from "./components/ListComponent";
 import "./App.css";
@@ -15,19 +15,25 @@ const App = () => {
       if (!userResponse.ok) {
         throw new Error("Network response error");
       }
-      const userData = await userResponse.json();
-      setUserData(userData);
+      const fetchedUserData = await userResponse.json();
+      setUserData(fetchedUserData);
 
       const reposResponse = await fetch(`https://api.github.com/users/${username}/repos`);
       if (!reposResponse.ok) {
         throw new Error("Network response error");
       }
-      const userRepos = await reposResponse.json();
-      setUserRepos(userRepos);
+      const fetchedUserRepos = await reposResponse.json();
+      setUserRepos(fetchedUserRepos);
     } catch (error) {
       console.error("An error occurred:", error);
     }
   };
+
+  useEffect(() => {
+    if (username.trim() !== "") {
+      handleSearch();
+    }
+  }, [username]);
 
   return (
     <div className="App">
