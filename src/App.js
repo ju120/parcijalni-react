@@ -33,6 +33,7 @@ const App = () => {
     if (username.trim() !== "") {
       handleSearch();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [username]);
 
   return (
