@@ -1,8 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Card, ListGroup } from "react-bootstrap";
+import { Card, ListGroup, Button } from "react-bootstrap";
 
-const ListComponent = ({ userData, userRepos, username }) => {
+const ListComponent = ({ userData, userRepos, username, handleReset }) => {
+  const sivapaleta = ["#F5F5F5", "#EBEBEB", "#E0E0E0", "#D6D6D6", "#CCCCCC"];
+
+  const getRandomColor = () => {
+    const randomIndex = Math.floor(Math.random() * sivapaleta.length);
+    return sivapaleta[randomIndex];
+  };
+
   return (
     <div className="mt-4">
       {userData && (
@@ -24,9 +31,14 @@ const ListComponent = ({ userData, userRepos, username }) => {
           <Card.Header>User Repositories for {username}</Card.Header>
           <ListGroup variant="flush">
             {userRepos.map((repo) => (
-              <ListGroup.Item key={repo.id}>{repo.name}</ListGroup.Item>
+              <ListGroup.Item key={repo.id} style={{ backgroundColor: getRandomColor() }}>
+                {repo.name}
+              </ListGroup.Item>
             ))}
           </ListGroup>
+          <Button onClick={handleReset} variant="primary">
+            RESET
+          </Button>
         </Card>
       )}
     </div>

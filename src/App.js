@@ -36,11 +36,16 @@ const App = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [username]);
 
+  const handleReset = () => {
+    setUsername("");
+    setUserData(null);
+    setUserRepos([]);
+  };
   return (
     <div className="App">
       <div className="container">
         <FormComponent onSubmit={handleSearch} setUsername={setUsername} />
-        <ListComponent userData={userData} userRepos={userRepos} username={username} />
+        <ListComponent userData={userData} userRepos={userRepos} username={username} handleReset={handleReset} />
       </div>
     </div>
   );

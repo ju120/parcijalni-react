@@ -5,8 +5,9 @@
   border: 1px solid black;
   display: flex;
   flex-direction: column;
+  background-color: #2d2c2b;
 }
 
-h2 {
-  padding: 1em;
+.form-control {
+  border-radius: 5px !important;
 }
